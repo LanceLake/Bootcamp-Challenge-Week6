@@ -107,14 +107,12 @@ function lookupWeather(lat,lon,cityName) {
 			for(i = y;i < z; i = i + 1)
 			{
 
-				console.log("Before",i,rollingAverageTemp,rollingAverageHumidity,rollingAverageWindSpeed);
+//				console.log("Before",i,rollingAverageHumidity);
 
 
 				rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
 				rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
 				rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
-
-
 
 				if(results["list"][i]["weather"][0]["main"] === "Clouds" && !eval(cardTextVariableName + x).classList.contains("clouds")){eval(cardTextVariableName + x).classList.add("clouds")};
 				if(results["list"][i]["weather"][0]["main"] === "Clear" && !eval(cardTextVariableName + x).classList.contains("clear")){eval(cardTextVariableName + x).classList.add("clear")};
@@ -133,157 +131,23 @@ function lookupWeather(lat,lon,cityName) {
 				if(results["list"][i]["weather"][0]["main"] === "Tornado" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
 			}
 
-console.log("after",i,rollingAverageTemp,rollingAverageHumidity,rollingAverageWindSpeed);
+//console.log("after",i,rollingAverageHumidity);
 		rollingAverageTemp = rollingAverageTemp / 8;
 		rollingAverageHumidity = rollingAverageHumidity / 8;
 		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
 
-console.log("divide",i,rollingAverageTemp,rollingAverageHumidity,rollingAverageWindSpeed);
+//console.log("divide",i,rollingAverageHumidity);
 
 		eval(cardTextVariableName + x).innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
+
+		rollingAverageTemp = 0;
+		rollingAverageHumidity = 0;
+		rollingAverageWindSpeed = 0;
+
+
 	}
 
-/*
 
-		rollingAverageTemp = 0;
-		rollingAverageHumidity = 0;
-		rollingAverageWindSpeed = 0;
-
-		for(i = 8;i < 16; i = i + 1)
-		{
-			rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
-			rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
-			rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
-
-			if(results["list"][i]["weather"][0]["main"] === "Clouds"){cardText1.classList.add("clouds")};
-			if(results["list"][i]["weather"][0]["main"] === "Clear"){cardText1.classList.add("clear")};
-			if(results["list"][i]["weather"][0]["main"] === "Snow"){cardText1.classList.add("snow")};
-			if(results["list"][i]["weather"][0]["main"] === "Rain"){cardText1.classList.add("rain")};
-			if(results["list"][i]["weather"][0]["main"] === "Drizzle"){cardText1.classList.add("drizzle")};
-			if(results["list"][i]["weather"][0]["main"] === "Thunderstorm"){cardText1.classList.add("thunderstorm")};
-			if(results["list"][i]["weather"][0]["main"] === "Mist"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Smoke"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Haze"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Dust"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Fog"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Sand"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Ash"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Squall"){cardText1.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Tornado"){cardText1.classList.add("smoke")};
-		}
-
-		rollingAverageTemp = rollingAverageTemp / 8;
-		rollingAverageHumidity = rollingAverageHumidity / 8;
-		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
-
-		cardText1.innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
-
-		rollingAverageTemp = 0;
-		rollingAverageHumidity = 0;
-		rollingAverageWindSpeed = 0;
-
-		for(i = 16;i < 24; i = i + 1)
-		{
-
-			rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
-			rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
-			rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
-
-			if(results["list"][i]["weather"][0]["main"] === "Clouds"){cardText2.classList.add("clouds")};
-			if(results["list"][i]["weather"][0]["main"] === "Clear"){cardText2.classList.add("clear")};
-			if(results["list"][i]["weather"][0]["main"] === "Snow"){cardText2.classList.add("snow")};
-			if(results["list"][i]["weather"][0]["main"] === "Rain"){cardText2.classList.add("rain")};
-			if(results["list"][i]["weather"][0]["main"] === "Drizzle"){cardText2.classList.add("drizzle")};
-			if(results["list"][i]["weather"][0]["main"] === "Thunderstorm"){cardText2.classList.add("thunderstorm")};
-			if(results["list"][i]["weather"][0]["main"] === "Mist"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Smoke"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Haze"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Dust"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Fog"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Sand"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Ash"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Squall"){cardText2.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Tornado"){cardText2.classList.add("smoke")};
-		}
-
-		rollingAverageTemp = rollingAverageTemp / 8;
-		rollingAverageHumidity = rollingAverageHumidity / 8;
-		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
-
-		cardText2.innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
-
-		rollingAverageTemp = 0;
-		rollingAverageHumidity = 0;
-		rollingAverageWindSpeed = 0;
-
-
-		for(i = 24;i < 32; i = i + 1)
-		{
-			rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
-			rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
-			rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
-
-			if(results["list"][i]["weather"][0]["main"] === "Clouds"){cardText3.classList.add("clouds")};
-			if(results["list"][i]["weather"][0]["main"] === "Clear"){cardText3.classList.add("clear")};
-			if(results["list"][i]["weather"][0]["main"] === "Snow"){cardText3.classList.add("snow")};
-			if(results["list"][i]["weather"][0]["main"] === "Rain"){cardText3.classList.add("rain")};
-			if(results["list"][i]["weather"][0]["main"] === "Drizzle"){cardText3.classList.add("drizzle")};
-			if(results["list"][i]["weather"][0]["main"] === "Thunderstorm"){cardText3.classList.add("thunderstorm")};
-			if(results["list"][i]["weather"][0]["main"] === "Mist"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Smoke"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Haze"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Dust"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Fog"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Sand"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Ash"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Squall"){cardText3.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Tornado"){cardText3.classList.add("smoke")};
-		}
-
-		rollingAverageTemp = rollingAverageTemp / 8;
-		rollingAverageHumidity = rollingAverageHumidity / 8;
-		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
-
-		cardText3.innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
-
-		rollingAverageTemp = 0;
-		rollingAverageHumidity = 0;
-		rollingAverageWindSpeed = 0;
-
-		for(i = 32;i < 40; i = i + 1)
-		{
-			rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
-			rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
-			rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
-
-			if(results["list"][i]["weather"][0]["main"] === "Clouds"){cardText4.classList.add("clouds")};
-			if(results["list"][i]["weather"][0]["main"] === "Clear"){cardText4.classList.add("clear")};
-			if(results["list"][i]["weather"][0]["main"] === "Snow"){cardText4.classList.add("snow")};
-			if(results["list"][i]["weather"][0]["main"] === "Rain"){cardText4.classList.add("rain")};
-			if(results["list"][i]["weather"][0]["main"] === "Drizzle"){cardText4.classList.add("drizzle")};
-			if(results["list"][i]["weather"][0]["main"] === "Thunderstorm"){cardText4.classList.add("thunderstorm")};
-			if(results["list"][i]["weather"][0]["main"] === "Mist"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Smoke"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Haze"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Dust"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Fog"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Sand"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Ash"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Squall"){cardText4.classList.add("smoke")};
-			if(results["list"][i]["weather"][0]["main"] === "Tornado"){cardText4.classList.add("smoke")};
-	
-		}
-
-		rollingAverageTemp = rollingAverageTemp / 8;
-		rollingAverageHumidity = rollingAverageHumidity / 8;
-		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
-
-		cardText4.innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
-
-		rollingAverageTemp = 0;
-		rollingAverageHumidity = 0;
-		rollingAverageWindSpeed = 0;
-*/
 	})
 }
 
