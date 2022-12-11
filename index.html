@@ -20,38 +20,58 @@
 
 	<body>
 
-		<div id="weatherToday"></div>
-
 		<div class="container">
 			<div class="row">
-				<div class="col-2">
-					<input type="text" class="form-control" name="citySearch" id="citySearch" placeholder="City Name">
-				</div>
-				<div class="col-2">
+				<div class="col-3">
+					<input type="text" class="form-control" name="citySearch" id="citySearch" placeholder="City Name, State, Country">
 					<button type="button" name="citySearchButton" class="form-control btn btn-primary" id="citySearchButton">Search City</button>
 				</div>
-				<div class="col-8">
+
+				<div class="col-9 border border-primary">
+					<u>Current Weather</u><BR>
+					<div id="weatherTodayDate"></div>
+					<img src="" id="weatherTodayImage"></img><BR>
+					<div id="weatherToday"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<u>Search History</u>
+					<div id="searchedCities"></div>
+				</div>
+
+				<div class="col-9">
 					<div id="results">
 						<div class="container">
 							<div class="row">
-								<div class="col">
-									<p id="card-text-0"></p>
+								<div class="col border border-primary">
+									<div id="card-date-0"></div>
+									<img src="" id="card-weather-0"></img><BR>
+									<div id="card-text-0"></div>
 								</div>
 
-								<div class="col">
-									<p id="card-text-1"></p>
+								<div class="col border border-primary">
+									<div id="card-date-1"></div>
+									<img src="" id="card-weather-1"></img><BR>
+									<div id="card-text-1"></div>
 								</div>
 
-								<div class="col">
-									<p id="card-text-2"></p>
+								<div class="col border border-primary">
+									<div id="card-date-2"></div>
+									<img src="" id="card-weather-2"></img><BR>
+									<div id="card-text-2"></div>
 								</div>
 
-								<div class="col">
-									<p id="card-text-3"></p>
+								<div class="col border border-primary">
+									<div id="card-date-3"></div>
+									<img src="" id="card-weather-3"></img><BR>
+									<div id="card-text-3"></div>
 								</div>
 
-								<div class="col">
-									<p id="card-text-4"></p>
+								<div class="col border border-primary">
+									<div id="card-date-4"></div>
+									<img src="" id="card-weather-4"></img><BR>
+									<div id="card-text-4"></div>
 								</div>
 							</div>
 						</div>
@@ -60,8 +80,11 @@
 			</div>
 		</div>
 
-		<HR>
-		<div id="searchedCities"></div>
+
+		<hr>
+
+
+		
 
 	</body>
 </html>

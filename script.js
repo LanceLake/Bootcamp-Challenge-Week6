@@ -33,12 +33,27 @@ var citySearch = document.getElementById("citySearch");
 var citySearchButton = document.getElementById("citySearchButton");
 var resultsEl = document.getElementById("results");
 var weatherToday = document.getElementById("weatherToday");
+var weatherTodayImage = document.getElementById("weatherTodayImage");
+var weatherTodayDate = document.getElementById("weatherTodayDate");
+
 var cardText0 = document.getElementById("card-text-0");
 var cardText1 = document.getElementById("card-text-1");
 var cardText2 = document.getElementById("card-text-2");
 var cardText3 = document.getElementById("card-text-3");
 var cardText4 = document.getElementById("card-text-4");
+var cardWeather0 = document.getElementById("card-weather-0");
+var cardWeather1 = document.getElementById("card-weather-1");
+var cardWeather2 = document.getElementById("card-weather-2");
+var cardWeather3 = document.getElementById("card-weather-3");
+var cardWeather4 = document.getElementById("card-weather-4");
+var cardDate0 = document.getElementById("card-date-0");
+var cardDate1 = document.getElementById("card-date-1");
+var cardDate2 = document.getElementById("card-date-2");
+var cardDate3 = document.getElementById("card-date-3");
+var cardDate4 = document.getElementById("card-date-4");
 var cardTextVariableName = 'cardText';
+var cardWeatherVariableName = 'cardWeather';
+var cardDateVariableName = 'cardDate';
 
 var rollingAverageTemp = 0;
 var rollingAverageHumidity = 0;
@@ -85,8 +100,34 @@ function lookupWeatherToday(lat,lon,cityName) {
 
 		weatherToday.innerHTML = "Temp: " + temp + "f<br>Humidity: " + humidity + "<br>Wind Speed: " + windSpeed;
 
-	})
-}
+		if(results["weather"][0]["main"] === "Clouds"){weatherToday.classList.add("clouds");weatherTodayImage.src = "https://openweathermap.org/img/wn/02d@2x.png"};
+		if(results["weather"][0]["main"] === "Clear"){weatherToday.classList.add("clear");weatherTodayImage.src = "https://openweathermap.org/img/wn/01d@2x.png"};
+		if(results["weather"][0]["main"] === "Snow"){weatherToday.classList.add("snow");weatherTodayImage.src = "https://openweathermap.org/img/wn/13d@2x.png"};
+		if(results["weather"][0]["main"] === "Rain"){weatherToday.classList.add("rain");weatherTodayImage.src = "https://openweathermap.org/img/wn/09d@2x.png"};
+		if(results["weather"][0]["main"] === "Drizzle"){weatherToday.classList.add("drizzle");weatherTodayImage.src = "https://openweathermap.org/img/wn/09d@2x.png"};
+		if(results["weather"][0]["main"] === "Thunderstorm"){weatherToday.classList.add("thunderstorm");weatherTodayImage.src = "https://openweathermap.org/img/wn/11d@2x.png"};
+		if(results["weather"][0]["main"] === "Mist"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Smoke"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Haze"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Dust"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Fog"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Sand"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Ash"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Squall"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+		if(results["weather"][0]["main"] === "Tornado"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+		weatherToday.innerHTML = "Temp: " + temp + "f<br>Humidity: " + humidity + "<br>Wind Speed: " + windSpeed;
+
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+
+		today = mm + '/' + dd + '/' + yyyy;
+
+		weatherTodayDate.innerHTML = today;
+	}
+)};
 
 
 function lookupWeather(lat,lon,cityName) {
@@ -106,29 +147,56 @@ function lookupWeather(lat,lon,cityName) {
 
 			for(i = y;i < z; i = i + 1)
 			{
-
-//				console.log("Before",i,rollingAverageHumidity);
-
+				rollingDate = results["list"][i]["dt_txt"].substring(0,10);
 
 				rollingAverageTemp = rollingAverageTemp + results["list"][i]["main"]["temp"];
 				rollingAverageHumidity = rollingAverageHumidity + results["list"][i]["main"]["humidity"];
 				rollingAverageWindSpeed = rollingAverageWindSpeed + results["list"][i]["wind"]["speed"];
 
-				if(results["list"][i]["weather"][0]["main"] === "Clouds" && !eval(cardTextVariableName + x).classList.contains("clouds")){eval(cardTextVariableName + x).classList.add("clouds")};
-				if(results["list"][i]["weather"][0]["main"] === "Clear" && !eval(cardTextVariableName + x).classList.contains("clear")){eval(cardTextVariableName + x).classList.add("clear")};
-				if(results["list"][i]["weather"][0]["main"] === "Snow" && !eval(cardTextVariableName + x).classList.contains("snow")){eval(cardTextVariableName + x).classList.add("snow")};
-				if(results["list"][i]["weather"][0]["main"] === "Rain" && !eval(cardTextVariableName + x).classList.contains("rain")){eval(cardTextVariableName + x).classList.add("rain")};
-				if(results["list"][i]["weather"][0]["main"] === "Drizzle" && !eval(cardTextVariableName + x).classList.contains("drizzle")){eval(cardTextVariableName + x).classList.add("drizzle")};
-				if(results["list"][i]["weather"][0]["main"] === "Thunderstorm" && !eval(cardTextVariableName + x).classList.contains("thunderstorm")){eval(cardTextVariableName + x).classList.add("thunderstorm")};
-				if(results["list"][i]["weather"][0]["main"] === "Mist" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Smoke" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Haze" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Dust" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Fog" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Sand" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Ash" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Squall" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
-				if(results["list"][i]["weather"][0]["main"] === "Tornado" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke")};
+				if(results["list"][i]["weather"][0]["main"] === "Clouds" && !eval(cardTextVariableName + x).classList.contains("clouds")){eval(cardTextVariableName + x).classList.add("clouds");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/04d@2x.png"};
+				
+				
+				if(results["list"][i]["weather"][0]["main"] === "Clear" && !eval(cardTextVariableName + x).classList.contains("clear")){eval(cardTextVariableName + x).classList.add("clear");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/01d@2x.png"};
+
+				if(results["list"][i]["weather"][0]["main"] === "Snow" && !eval(cardTextVariableName + x).classList.contains("snow")){eval(cardTextVariableName + x).classList.add("snow");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/13d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Rain" && !eval(cardTextVariableName + x).classList.contains("rain")){eval(cardTextVariableName + x).classList.add("rain");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/09d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Drizzle" && !eval(cardTextVariableName + x).classList.contains("drizzle")){eval(cardTextVariableName + x).classList.add("drizzle");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/09d@2x.png"};
+
+				
+				if(results["list"][i]["weather"][0]["main"] === "Thunderstorm" && !eval(cardTextVariableName + x).classList.contains("thunderstorm")){eval(cardTextVariableName + x).classList.add("thunderstorm");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/11d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Mist" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Smoke" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Haze" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Dust" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Fog" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Sand" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Ash" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Squall" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
+				if(results["list"][i]["weather"][0]["main"] === "Tornado" && !eval(cardTextVariableName + x).classList.contains("smoke")){eval(cardTextVariableName + x).classList.add("smoke");eval(cardWeatherVariableName + x).src = "https://openweathermap.org/img/wn/50d@2x.png"};
+
+
 			}
 
 //console.log("after",i,rollingAverageHumidity);
@@ -136,9 +204,17 @@ function lookupWeather(lat,lon,cityName) {
 		rollingAverageHumidity = rollingAverageHumidity / 8;
 		rollingAverageWindSpeed = rollingAverageWindSpeed / 8;
 
+		rollingAverageTemp = Math.round(rollingAverageTemp * 10) / 10;
+		rollingAverageHumidity = Math.round(rollingAverageHumidity * 10) / 10;
+		rollingAverageWindSpeed = Math.round(rollingAverageWindSpeed * 10) / 10;
+
+		
+
 //console.log("divide",i,rollingAverageHumidity);
 
 		eval(cardTextVariableName + x).innerHTML = "Temp: " + rollingAverageTemp + "f<br>Humidity: " + rollingAverageHumidity + "<br>Wind Speed: " + rollingAverageWindSpeed;
+
+		eval(cardDateVariableName + x).innerHTML = rollingDate;
 
 		rollingAverageTemp = 0;
 		rollingAverageHumidity = 0;

@@ -3,41 +3,38 @@ body {
 	font-size: 16px;
 }
 
-textarea {
-	background: transparent;
-	border: none;
-	resize: none;
-	color: #000000;
-	border-left: 1px solid black;
+.thunderstorm {
+	border: 1px solid black;
 	padding: 10px;
 }
 
-.thunderstorm {
-	background-image: url("https://openweathermap.org/img/wn/11d@2x.png");	
-}
-
 .drizzle {
-	background-image: url("https://openweathermap.org/img/wn/09d@2x.png");	
+	border: 1px solid black;
+	padding: 10px;
 }
 
 .rain {
-	background-image: url("https://openweathermap.org/img/wn/09d@2x.png");	
+	border: 1px solid black;
+	padding: 10px;
 }
 
 
 .snow {
-	background-image: url("https://openweathermap.org/img/wn/13d@2x.png");	
+	border: 1px solid black;
+	padding: 10px;
 }
 
 .smoke {
-	background-image: url("https://openweathermap.org/img/wn/50d@2x.png");
+	border: 1px solid black;
+	padding: 10px;
 }
 
 .clear {
-	background-image: url("https://openweathermap.org/img/wn/01d@2x.png");
+	border: 1px solid black;
+	padding: 10px;
 }
 
 .clouds {
-	
-	background-image: url("https://openweathermap.org/img/wn/04d@2x.png");
+	border: 1px solid black;
+	padding: 10px;
 }
