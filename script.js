@@ -13,7 +13,6 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
-api key: 2be2c44b37dc4c66978bc44dca205463
 
 https://openweathermap.org/api/geocoding-api
 http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
@@ -99,13 +98,13 @@ function lookupWeather(lat,lon,cityName) {
 
 		for(x = 0;x < 5; x = x + 1)
 		{
-			if(x == 0){y = 0; z = 7};
-			if(x == 1){y = 8; z = 15};
-			if(x == 2){y = 16; z = 23};
-			if(x == 3){y = 24; z = 31};
-			if(x == 4){y = 32; z = 39};
+			if(x == 0){y = 0; z = 8};
+			if(x == 1){y = 8; z = 16};
+			if(x == 2){y = 16; z = 24};
+			if(x == 3){y = 24; z = 32};
+			if(x == 4){y = 32; z = 40};
 
-			for(i = y;i <= z; i = i + 1)
+			for(i = y;i < z; i = i + 1)
 			{
 
 				console.log("Before",i,rollingAverageTemp,rollingAverageHumidity,rollingAverageWindSpeed);
