@@ -119,7 +119,7 @@ function lookupWeatherToday(lat,lon,cityName) {
 		if(results["weather"][0]["main"] === "Squall"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
 		if(results["weather"][0]["main"] === "Tornado"){weatherToday.classList.add("smoke");weatherTodayImage.src = "https://openweathermap.org/img/wn/50d@2x.png"};
 
-		weatherToday.innerHTML = "Temp: " + temp + "f<br>Humidity: " + humidity + "<br>Wind Speed: " + windSpeed;
+		weatherToday.innerHTML = "Temp: " + temp + "k<br>Humidity: " + humidity + "%<br>Wind Speed: " + windSpeed + "mph";
 
 		var today = new Date();
 		var dd = String(today.getDate()).padStart(2, '0');

@@ -6,35 +6,43 @@ body {
 .thunderstorm {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgba(0, 255, 255, 0.441);
 }
 
 .drizzle {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: aqua;
 }
 
 .rain {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgb(85, 165, 165);
 }
 
 
 .snow {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgb(81, 0, 255);
 }
 
 .smoke {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgb(102, 102, 103);
 }
 
 .clear {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgb(255, 255, 255);
 }
 
 .clouds {
 	border: 1px solid black;
 	padding: 10px;
+	background-color: rgb(189, 187, 193);
+
 }
